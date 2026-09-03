@@ -1,0 +1,15 @@
+{
+	"name": "AzureProjectETE",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "434b66fb-5594-4e23-8b53-8511ab7c6c86",
+		"tenantId": "54ac3a52-720b-457f-9f9c-8f4d329282c3"
+	}
+}
