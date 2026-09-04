@@ -316,26 +316,6 @@
 									}
 								]
 							}
-						},
-						{
-							"name": "AppendFailedTable",
-							"type": "AppendVariable",
-							"dependsOn": [
-								{
-									"activity": "InjectionToBronzeFromSQL",
-									"dependencyConditions": [
-										"Failed"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "FailedTables",
-								"value": {
-									"value": "@concat(\n    item().TableName,\n    ' - Error: ',\n    replace(replace(replace(string(activity('InjectionToBronzeFromSQL').Error.message), '\"', ''), '\\n', ' '), '\\r', ' ')\n)",
-									"type": "Expression"
-								}
-							}
 						}
 					]
 				}
@@ -432,7 +412,7 @@
 						"type": "Expression"
 					},
 					"body": {
-						"value": "{\n    'pipeline_name': '@{pipeline().Pipeline}',\n    'pipeline_run_id': '@{pipeline().RunId}',\n    'pipeline_status': '@{if(equals(length(variables('FailedTables')), 0), 'All Succeeded', 'Some Failures')}',\n    'failed_tables': '@{replace(replace(string(variables('FailedTables')), '\\n', ' | '), '\\\"', '')}'\n}",
+						"value": "{\n    'pipeline_name': '@{pipeline().Pipeline}',\n    'pipeline_run_id': '@{pipeline().RunId}',\n}",
 						"type": "Expression"
 					}
 				}
