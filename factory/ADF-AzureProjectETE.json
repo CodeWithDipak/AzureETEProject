@@ -1,0 +1,15 @@
+{
+	"name": "ADF-AzureProjectETE",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e96c5ba7-7f20-421d-a8c4-76d94fa63cdd",
+		"tenantId": "cfb0e00e-a0eb-4ece-acbd-f0be2d28c2c5"
+	}
+}
