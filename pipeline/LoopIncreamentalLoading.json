@@ -399,7 +399,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"url": "https://azureprojectetekeyvault.vault.azure.net/secrets/logicappurl?api-version=7.4",
+					"url": "https://azureprojectetekeyvault1.vault.azure.net/secrets/logicappurl?api-version=7.4",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://vault.azure.net"
