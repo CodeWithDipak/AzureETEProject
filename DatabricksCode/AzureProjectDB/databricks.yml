@@ -1,0 +1,42 @@
+# This is a Declarative Automation Bundle definition for AzureProjectDB.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: AzureProjectDB
+  uuid: 04111ae7-512e-41ab-8a40-40e9b2570079
+
+include:
+  - resources/*.yml
+
+artifacts:
+  python_artifact:
+    type: whl
+    build: uv build --wheel
+
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+  schema:
+    description: The schema to use
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-7405613360710138.18.azuredatabricks.net
+    variables:
+      catalog: goldcatalog
+      schema: ${workspace.current_user.short_name}
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7405613360710138.18.azuredatabricks.net
+      # We explicitly deploy to /Workspace/Users/khushi.fegade@outlook.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/khushi.fegade@outlook.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: goldcatalog
+      schema: prod
+    permissions:
+      - user_name: khushi.fegade@outlook.com
+        level: CAN_MANAGE
